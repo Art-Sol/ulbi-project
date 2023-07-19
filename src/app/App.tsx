@@ -5,9 +5,10 @@ import './styles/index.scss';
 import { useTheme } from 'app/providers/ThemeProvider';
 import { AppRouter } from 'app/providers/router';
 
-import { classNames } from 'shared/lib/classNames/classNames';
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
+
+import { classNames } from 'shared/lib/classNames/classNames';
 
 export const App = () => {
   const { theme } = useTheme();
@@ -15,10 +16,10 @@ export const App = () => {
   return (
     <div className={classNames('app', {}, [theme])}>
       <Suspense fallback="">
-        <Navbar/>
+        <Navbar />
         <div className="content-page">
-          <Sidebar/>
-          <AppRouter/>
+          <Sidebar />
+          <AppRouter />
         </div>
       </Suspense>
     </div>
