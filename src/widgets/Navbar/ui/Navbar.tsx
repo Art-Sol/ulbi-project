@@ -1,10 +1,10 @@
 import React, { type FC, useCallback, useState } from 'react';
-import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { classNames } from 'shared/lib/classNames/classNames';
-
 import { useTranslation } from 'react-i18next';
-import { Modal } from 'shared/ui/Modal/Modal';
+
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { LoginModal } from 'features/AuthByUserName';
+
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -15,8 +15,12 @@ export const Navbar: FC<NavbarProps> = ({ className }) => {
   const { t } = useTranslation();
   const [isAuthModal, setIsAuthModal] = useState(false);
 
-  const onToggleModal = useCallback(() => {
-    setIsAuthModal((prev) => !prev);
+  const onCloseModal = useCallback(() => {
+    setIsAuthModal(false);
+  }, []);
+
+  const onOpenModal = useCallback(() => {
+    setIsAuthModal(true);
   }, []);
 
   return (
@@ -24,14 +28,14 @@ export const Navbar: FC<NavbarProps> = ({ className }) => {
       <Button
         className={cls.links}
         theme={ButtonTheme.CLEAR}
-        onClick={onToggleModal}
+        onClick={onOpenModal}
       >
         {t('Войти')}
       </Button>
-      {/* eslint-disable-next-line i18next/no-literal-string */}
-      <Modal isOpen={isAuthModal} onClose={onToggleModal}>
-        lorsfsdalsal lsdk lksdlfj ;lsdj ;lfkdjlkfjds l;s sdlf djdsjf ds;l j;lsad
-      </Modal>
+      <LoginModal
+        isOpen={isAuthModal}
+        onClose={onCloseModal}
+      />
     </div>
   );
 };
