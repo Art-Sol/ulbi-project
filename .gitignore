@@ -6,5 +6,6 @@ node_modules
 ./storybook-static
 /storybook-static
 .storybook-static
+storybook-static
 .loki/report.html
 .loki/report.json
