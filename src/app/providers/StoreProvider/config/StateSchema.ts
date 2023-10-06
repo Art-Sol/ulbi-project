@@ -4,6 +4,7 @@ import {
 
 import { CounterSchema } from 'entitie/Counter';
 import { UserSchema } from 'entitie/User';
+import { ProfileSchema } from 'entitie/Profile';
 import { LoginSchema } from 'features/AuthByUserName';
 
 export interface StateSchema {
@@ -12,6 +13,7 @@ export interface StateSchema {
 
   // Асинхронные редюсеры
   loginForm?: LoginSchema;
+  profile?: ProfileSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

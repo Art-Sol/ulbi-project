@@ -1,7 +1,6 @@
 import {
   ChangeEvent,
-  type FC,
-  InputHTMLAttributes,
+  InputHTMLAttributes, memo,
   useEffect,
   useRef,
   useState,
@@ -19,7 +18,7 @@ interface InputProps extends HTMLInputProps {
   autofocus?: boolean;
 }
 
-export const Input: FC<InputProps> = (props) => {
+export const Input = memo((props: InputProps) => {
   const {
     className,
     value,
@@ -81,4 +80,4 @@ export const Input: FC<InputProps> = (props) => {
       </div>
     </div>
   );
-};
+});
