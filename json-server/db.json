@@ -26,12 +26,12 @@
     }
   ],
   "profile": {
-    "first": "Тимур",
-    "lastname": "Ульби",
-    "age": 22,
-    "currency": "RUB",
-    "country": "Russia",
-    "city": "Moscow",
+    "first": "Vasya",
+    "lastname": "Pupkin",
+    "age": 11,
+    "currency": "USD",
+    "country": "Belarus",
+    "city": "Saint-Petersburg",
     "username": "test",
     "avatar": "https://pic.rutubelist.ru/user/3b/27/3b2758ad5492a76b578f7ee072e4e894.jpg"
   }

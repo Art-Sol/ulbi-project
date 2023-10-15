@@ -1,5 +1,4 @@
 import React from 'react';
-import i18next from 'i18next';
 
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 
@@ -11,6 +10,7 @@ export interface SidebarItemType {
   path: string;
   text: string;
   Icon: React.VFC<React.SVGProps<SVGSVGElement>>;
+  authOnly?: boolean;
 }
 
 export const SidebarItemsList: SidebarItemType[] = [
@@ -28,5 +28,6 @@ export const SidebarItemsList: SidebarItemType[] = [
     path: RoutePath.profile,
     text: 'Навигация.Профиль',
     Icon: ProfileIcon,
+    authOnly: true,
   },
 ];
