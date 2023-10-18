@@ -1,6 +1,4 @@
-import { Simulate } from 'react-dom/test-utils';
 import { Profile, ValidateProfileError } from '../../types/profile';
-import error = Simulate.error;
 
 export const validateProfileData = (profile?: Profile) => {
   if (!profile) {

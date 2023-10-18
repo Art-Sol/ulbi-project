@@ -19,4 +19,5 @@ export interface BuildOptions {
   isDev: boolean;
   port: number; // для webpack-dev-server
   apiUrl: string; // для инстанса аксиоса и возможности задания url извне
+  project: 'storybook' | 'frontend' | 'jest'; // для возможности задавать среды в разных инструменах
 }
