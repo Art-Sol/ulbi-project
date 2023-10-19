@@ -1,11 +1,10 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
+import avatar from 'shared/assets/forTest/avatarExample.jpg';
 import { Country } from 'entitie/Country';
 import { Currency } from 'entitie/Currency';
-import avatar from 'shared/assets/forTest/avatarExample.jpg';
-
-import { ProfileCard } from './ProfileCard';
+import { ProfileCard } from 'entitie/Profile';
 
 export default {
   title: 'entities/ProfileCard',
@@ -20,20 +19,20 @@ const Template: ComponentStory<typeof ProfileCard> = (args) => <ProfileCard {...
 export const Primary = Template.bind({});
 Primary.args = {
   data: {
-    username: 'test',
+    username: 'admin',
     age: 22,
-    country: Country.Russia,
-    lastname: 'Pupkin',
-    first: 'Vasya',
-    city: 'Moscow',
-    currency: Currency.RUB,
+    country: Country.Ukraine,
+    lastname: 'admin',
+    first: 'asd',
+    city: 'asf',
+    currency: Currency.USD,
     avatar,
   },
 };
 
 export const withError = Template.bind({});
 withError.args = {
-  error: 'error',
+  error: 'true',
 };
 
 export const Loading = Template.bind({});
