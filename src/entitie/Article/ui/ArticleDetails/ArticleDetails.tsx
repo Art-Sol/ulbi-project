@@ -32,8 +32,8 @@ import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
 import cls from './ArticleDetails.module.scss';
 
 interface ArticleDetailsProps {
-  className?: string;
-  id: string;
+    className?: string;
+    id: string;
 }
 
 const reducers: ReducersList = {
