@@ -1,4 +1,4 @@
-import { type FC, memo } from 'react';
+import { type FC, memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
@@ -14,6 +14,10 @@ import {
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
+import { AddCommentForm } from 'features/AddCommentForm';
+import {
+  addCommentForArticle,
+} from 'pages/ArticleDetailsPage/model/services/addCommentForArticle/addCommentForArticle';
 import {
   fetchCommentsByArticleId,
 } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
@@ -46,6 +50,10 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
     dispatch(fetchCommentsByArticleId(id));
   });
 
+  const handleSentComment = useCallback((text: string) => {
+    dispatch(addCommentForArticle(text));
+  }, [dispatch]);
+
   if (!id) {
     return (
       <div className={classNames('', {}, [className])}>
@@ -59,6 +67,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
       <div className={classNames('articleDetailsPage', {}, [className])}>
         <ArticleDetails id={id} />
         <Text className={cls.commentTitle} title={t('Комментарии')} />
+        <AddCommentForm onSentComment={handleSentComment} />
         <CommentList
           isLoading={commentsIsLoading}
           comments={comments}

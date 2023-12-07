@@ -11,6 +11,7 @@ import { UserSchema } from 'entitie/User';
 import { ProfileSchema } from 'entitie/Profile';
 import { ArticleDetailsSchema } from 'entitie/Article';
 import { LoginSchema } from 'features/AuthByUserName';
+import { AddCommentFormSchema } from 'features/AddCommentForm';
 
 export interface StateSchema {
   counter: CounterSchema;
@@ -21,6 +22,7 @@ export interface StateSchema {
   profile?: ProfileSchema;
   articleDetails?: ArticleDetailsSchema;
   articleDetailsComments?: ArticleDetailsCommentsSchema;
+  addCommentForm?: AddCommentFormSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
