@@ -29,6 +29,10 @@
   justify-content: center;
 }
 
+.avatar {
+  object-fit: cover;
+}
+
 .block {
   margin-bottom: 16px;
 }

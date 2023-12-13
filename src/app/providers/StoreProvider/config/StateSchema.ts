@@ -6,6 +6,7 @@ import { To } from 'history';
 import { NavigateOptions } from 'react-router';
 
 import { ArticleDetailsCommentsSchema } from 'pages/ArticleDetailsPage';
+import { ArticlesPageSchema } from 'pages/ArticlesPage';
 import { CounterSchema } from 'entitie/Counter';
 import { UserSchema } from 'entitie/User';
 import { ProfileSchema } from 'entitie/Profile';
@@ -23,6 +24,7 @@ export interface StateSchema {
   articleDetails?: ArticleDetailsSchema;
   articleDetailsComments?: ArticleDetailsCommentsSchema;
   addCommentForm?: AddCommentFormSchema;
+  articlesPage?: ArticlesPageSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
