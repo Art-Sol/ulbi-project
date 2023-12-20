@@ -15,6 +15,7 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { AddCommentForm } from 'features/AddCommentForm';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { Page } from 'shared/ui/Page/Page';
 
 import {
   addCommentForArticle,
@@ -62,15 +63,15 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
 
   if (!id) {
     return (
-      <div className={classNames('', {}, [className])}>
+      <Page className={classNames('', {}, [className])}>
         {t('Статья не найдена')}
-      </div>
+      </Page>
     );
   }
 
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-      <div className={classNames('articleDetailsPage', {}, [className])}>
+      <Page className={classNames('articleDetailsPage', {}, [className])}>
         <Button theme={ButtonTheme.OUTLINE} onClick={handleBackToList}>
           {t('Назад к списку статей')}
         </Button>
@@ -81,7 +82,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
           isLoading={commentsIsLoading}
           comments={comments}
         />
-      </div>
+      </Page>
     </DynamicModuleLoader>
   );
 };
