@@ -13,13 +13,13 @@ import { Page } from 'shared/ui/Page/Page';
 
 import {
   fetchNextArticlesPage,
-} from 'pages/ArticlesPage/model/services/fetchNextArticlePage/fetchNextArticlePage';
+} from '../../model/services/fetchNextArticlePage/fetchNextArticlePage';
+import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
 import {
-  getArticlesPageError, getArticlesPageHasMore,
-  getArticlesPageIsLoading, getArticlesPageNumber,
+  getArticlesPageError,
+  getArticlesPageIsLoading,
   getArticlesPageView,
 } from '../../model/selectors/articlesPageSelectors';
-import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList';
 import {
   articlesPageActions,
   articlesPageReducer,
@@ -49,8 +49,7 @@ const ArticlesPage: FC<ArticlesPageProps> = ({ className }) => {
   }, [dispatch]);
 
   useInitialEffect(() => {
-    dispatch(articlesPageActions.initState());
-    dispatch(fetchArticlesList({ page: 1 }));
+    dispatch(initArticlesPage());
   });
 
   const handleChangeView = useCallback((view: ArticleView) => {
@@ -58,7 +57,7 @@ const ArticlesPage: FC<ArticlesPageProps> = ({ className }) => {
   }, [dispatch]);
 
   return (
-    <DynamicModuleLoader reducers={reducers}>
+    <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
       <Page
         onScrollEnd={handleLoadNextPart}
         className={classNames(cls.articlesPage, {}, [className])}
