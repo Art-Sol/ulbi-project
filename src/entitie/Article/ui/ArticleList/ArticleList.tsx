@@ -6,6 +6,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import {
   ArticleListItemSkeleton,
 } from 'entitie/Article/ui/ArticleListItem/ArticleListItemSkeleton';
+import { Text, TextSize } from 'shared/ui/Text/Text';
 import { Article, ArticleView } from '../../model/types/article';
 
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
@@ -42,6 +43,14 @@ export const ArticleList = memo((props: ArticleListProps) => {
       className={cls.card}
     />
   );
+
+  if (!isLoading && !articles.length) {
+    return (
+      <div className={classNames(cls.articleList, {}, [className, cls[view]])}>
+        <Text title={t('Статьи не найдены', { ns: 'article' })} size={TextSize.L} />
+      </div>
+    );
+  }
 
   return (
     <div className={classNames(cls.articleList, {}, [className, cls[view]])}>

@@ -6,7 +6,7 @@ import { Normal } from 'pages/ArticleDetailsPage/ui/ArticleDetailsPage/ArticleDe
 import ArticlesPage from './ArticlesPage';
 
 export default {
-  title: 'pages/ArticlesPage',
+  title: 'pages/Article/ArticlesPage',
   component: ArticlesPage,
   argTypes: {
     backgroundColor: { control: 'color' },
@@ -17,8 +17,4 @@ const Template: ComponentStory<typeof ArticlesPage> = (args) => <ArticlesPage {.
 
 export const Primary = Template.bind({});
 Primary.args = {};
-Primary.decorators = [StoreDecorator({
-  // articleDetails: {
-  //   data: article,
-  // },
-})];
+Primary.decorators = [StoreDecorator({})];
