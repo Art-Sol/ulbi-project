@@ -19,6 +19,9 @@ import { Page } from 'widgets/Page/Page';
 
 import { articleDetailsPageReducer } from 'pages/ArticleDetailsPage/model/slices';
 import {
+  ArticleDetailsPageHeader,
+} from 'pages/ArticleDetailsPage/ui/ArticleDetailsPageHeader/ArticleDetailsPageHeader';
+import {
   fetchArticleRecommendations,
 } from '../../model/services/fetchArticleRecommendations/fetchArticleRecommendations';
 import {
@@ -57,7 +60,6 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
   const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
   const recommendationsIsLoading = useSelector(getArticleRecommendationsIsLoading);
   const commentsError = useSelector(getArticleCommentsError);
-  const navigate = useNavigate();
 
   useInitialEffect(() => {
     dispatch(fetchCommentsByArticleId(id));
@@ -67,10 +69,6 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
   const handleSentComment = useCallback((text: string) => {
     dispatch(addCommentForArticle(text));
   }, [dispatch]);
-
-  const handleBackToList = useCallback(() => {
-    navigate(RoutePath.articles);
-  }, [navigate]);
 
   if (!id) {
     return (
@@ -83,9 +81,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
       <Page className={classNames('articleDetailsPage', {}, [className])}>
-        <Button theme={ButtonTheme.OUTLINE} onClick={handleBackToList}>
-          {t('Назад к списку статей')}
-        </Button>
+        <ArticleDetailsPageHeader />
         <ArticleDetails id={id} />
         <Text size={TextSize.L} className={cls.commentTitle} title={t('Рекомендуем')} />
         <ArticleList
