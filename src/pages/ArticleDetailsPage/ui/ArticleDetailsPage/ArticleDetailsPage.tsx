@@ -4,9 +4,9 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { ArticleDetails } from 'entitie/Article';
+import { ArticleDetails, ArticleList } from 'entitie/Article';
 import { CommentList } from 'entitie/Comment';
-import { Text } from 'shared/ui/Text/Text';
+import { Text, TextSize } from 'shared/ui/Text/Text';
 import {
   DynamicModuleLoader, ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
@@ -17,6 +17,14 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { Page } from 'widgets/Page/Page';
 
+import { articleDetailsPageReducer } from 'pages/ArticleDetailsPage/model/slices';
+import {
+  fetchArticleRecommendations,
+} from '../../model/services/fetchArticleRecommendations/fetchArticleRecommendations';
+import {
+  getArticleRecommendations,
+} from '../../model/slices/ArticleDetailsPageRecommendationsSlice';
+import { getArticleRecommendationsIsLoading } from '../../model/selectors/recommendations';
 import {
   addCommentForArticle,
 } from '../../model/services/addCommentForArticle/addCommentForArticle';
@@ -37,7 +45,7 @@ interface ArticleDetailsPageProps {
 }
 
 const reducers: ReducersList = {
-  articleDetailsComments: articleDetailsCommentReducer,
+  articleDetailsPage: articleDetailsPageReducer,
 };
 
 const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
@@ -45,12 +53,15 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
   const { id } = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
   const comments = useSelector(getArticleComments.selectAll);
+  const recommendations = useSelector(getArticleRecommendations.selectAll);
   const commentsIsLoading = useSelector(getArticleCommentsIsLoading);
+  const recommendationsIsLoading = useSelector(getArticleRecommendationsIsLoading);
   const commentsError = useSelector(getArticleCommentsError);
   const navigate = useNavigate();
 
   useInitialEffect(() => {
     dispatch(fetchCommentsByArticleId(id));
+    dispatch(fetchArticleRecommendations());
   });
 
   const handleSentComment = useCallback((text: string) => {
@@ -76,7 +87,14 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
           {t('Назад к списку статей')}
         </Button>
         <ArticleDetails id={id} />
-        <Text className={cls.commentTitle} title={t('Комментарии')} />
+        <Text size={TextSize.L} className={cls.commentTitle} title={t('Рекомендуем')} />
+        <ArticleList
+          target="_blank"
+          articles={recommendations}
+          isLoading={recommendationsIsLoading}
+          className={cls.recommendations}
+        />
+        <Text size={TextSize.L} className={cls.commentTitle} title={t('Комментарии')} />
         <AddCommentForm onSentComment={handleSentComment} />
         <CommentList
           isLoading={commentsIsLoading}
@@ -88,24 +106,3 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
 };
 
 export default memo(ArticleDetailsPage);
-
-// [
-//     {
-//         id: '1',
-//         text: 'comment 1',
-//         user: {
-//             id: '1',
-//             username: 'test',
-//             avatar: 'https://pic.rutubelist.ru/video/ce/da/ceda7d0b03d4081e62cc71b6a6cc45e5.jpg',
-//         },
-//     },
-//     {
-//         id: '2',
-//         text: 'comment 2',
-//         user: {
-//             id: '1',
-//             username: 'test',
-//             avatar: 'https://pic.rutubelist.ru/video/ce/da/ceda7d0b03d4081e62cc71b6a6cc45e5.jpg',
-//         },
-//     },
-// ]
