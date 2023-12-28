@@ -22,8 +22,6 @@ export const StoreProvider: FC<StoreProviderProps> = (props) => {
     // navigate,
   );
 
-  console.log('store render');
-
   return (
     <Provider store={store}>
       {children}
