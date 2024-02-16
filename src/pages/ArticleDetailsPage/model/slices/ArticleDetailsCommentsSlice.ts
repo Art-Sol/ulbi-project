@@ -5,9 +5,10 @@ import {
 
 import { Comment } from 'entitie/Comment';
 import { StateSchema } from 'app/providers/StoreProvider';
+
 import {
   fetchCommentsByArticleId,
-} from 'pages/ArticleDetailsPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
+} from '../services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { ArticleDetailsCommentsSchema } from '../types/ArticleDetailsCommentsSchema';
 
 const commentsAdapater = createEntityAdapter<Comment>({

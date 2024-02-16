@@ -23,6 +23,7 @@ module.exports = {
         "@typescript-eslint",
         "i18next",
         "react-hooks",
+        "artem-plugin123"
     ],
     rules: {
         "no-console": "warn",
@@ -56,7 +57,8 @@ module.exports = {
         "no-param-reassign": "off",
         "no-undef": "off",
         "react/no-array-index-key": "off",
-        "arrow-body-style": "off"
+        "arrow-body-style": "off",
+        "artem-plugin123/path-checker": "error",
     },
     globals: {
         __IS_DEV__: true,
