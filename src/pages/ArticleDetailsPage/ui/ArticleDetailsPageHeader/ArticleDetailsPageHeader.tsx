@@ -8,10 +8,9 @@ import { getUserAuthData } from 'entitie/User';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { HStack } from 'shared/ui/Stack';
 
 import { getCanEditArticle } from '../../model/selectors/article';
-
-import cls from './ArticleDetailsPageHeader.module.scss';
 
 interface ArticleDetailsPageHeaderProps {
     className?: string;
@@ -33,15 +32,19 @@ export const ArticleDetailsPageHeader = (props: ArticleDetailsPageHeaderProps) =
   }, [article?.id, navigate]);
 
   return (
-    <div className={classNames(cls.articleDetailsPageHeader, {}, [className])}>
+    <HStack
+      max
+      justify="between"
+      className={classNames('', {}, [className])}
+    >
       <Button theme={ButtonTheme.OUTLINE} onClick={handleBackToList}>
         {t('Назад к списку статей')}
       </Button>
       {canEdit && (
-        <Button theme={ButtonTheme.OUTLINE} onClick={handleEditArticle} className={cls.editBtn}>
+        <Button theme={ButtonTheme.OUTLINE} onClick={handleEditArticle}>
           {t('Редактировать')}
         </Button>
       )}
-    </div>
+    </HStack>
   );
 };
