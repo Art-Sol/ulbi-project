@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import { Flex, FlexProps } from '../../Stack/Flex/Flex';
+import { Flex, IFlexProps } from '../../Stack/Flex/Flex';
 
-type VStackProps = Omit<FlexProps, 'direction'>
+type VStackProps = Omit<IFlexProps, 'direction'>
 
 export const VStack: FC<VStackProps> = (props) => {
   const { align = 'start' } = props;
